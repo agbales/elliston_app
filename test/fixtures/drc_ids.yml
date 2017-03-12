@@ -1,0 +1,55 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  collection: MyString
+  author: MyString
+  location: MyString
+  year: MyString
+  date: MyString
+  date_digitized: MyString
+  date_issued: MyString
+  description_html: MyString
+  description_notes: MyString
+  format: MyString
+  length: MyString
+  drc_link: MyString
+  language: MyString
+  institution_repo: MyString
+  institution_digital: MyString
+  is_part_of: MyString
+  series: MyString
+  rights_uri: MyString
+  rights: MyString
+  subject: MyString
+  subject_two: MyString
+  subject_three: MyString
+  title_alternitive: MyString
+  title_text: MyString
+  recording_type: MyString
+
+two:
+  collection: MyString
+  author: MyString
+  location: MyString
+  year: MyString
+  date: MyString
+  date_digitized: MyString
+  date_issued: MyString
+  description_html: MyString
+  description_notes: MyString
+  format: MyString
+  length: MyString
+  drc_link: MyString
+  language: MyString
+  institution_repo: MyString
+  institution_digital: MyString
+  is_part_of: MyString
+  series: MyString
+  rights_uri: MyString
+  rights: MyString
+  subject: MyString
+  subject_two: MyString
+  subject_three: MyString
+  title_alternitive: MyString
+  title_text: MyString
+  recording_type: MyString

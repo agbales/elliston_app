@@ -1,0 +1,16 @@
+<h1>Elliston Records</h1>
+
+<% if @records.present? %>
+  <table>
+    <% @records.each_with_index do |record, index| %>
+      <tr>
+        <td><%= index %></td>
+        <td><%= record.drc_id %></td>
+        <td><%= link_to record.author, record %></td>
+        <td><%= record.attributes %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <h5>Sorry, no records available.</h5>
+<% end %>
