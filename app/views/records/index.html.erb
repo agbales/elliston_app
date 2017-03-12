@@ -1,13 +1,17 @@
-<h1>Elliston Records</h1>
+<h2>Elliston</h2>
 
 <% if @records.present? %>
   <table>
     <% @records.each_with_index do |record, index| %>
       <tr>
-        <td><%= index %></td>
-        <td><%= record.drc_id %></td>
-        <td><%= link_to record.author, record %></td>
-        <td><%= record.attributes %></td>
+        <td><b><%= index + 1 %></b></td>
+        <td><%= link_to record.author.truncate(25, omission: '...'), record, :class => "button", :style => "width: 100%;" %></td>
+        <td>DRC-<%= record.drc_id %>
+            <br>
+            <%= record.date %>
+            <br>
+            <%= record.series %>
+        </td>
       </tr>
     <% end %>
   </table>
