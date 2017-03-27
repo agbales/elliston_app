@@ -11,6 +11,21 @@ require 'csv'
 csv = File.path(Rails.root.join('lib', 'seeds', 'updated-elliston-data.csv'))
 
 CSV.foreach(csv, headers: true, :encoding => 'ISO-8859-1:UTF-8') do |row|
+
+  #tracks test
+  tracks = [
+    {
+      "track_number" => 0,
+      "track_title" => "the first track",
+      "track_url" => "www.google.com"
+    },
+    {
+      "track_number" => 1,
+      "track_title" => "the second track",
+      "track_url" => "www.google.com"
+    }
+  ]
+
   Record.create(
     :drc_id => row['id'],
     :collection => row['collection'],
@@ -37,6 +52,7 @@ CSV.foreach(csv, headers: true, :encoding => 'ISO-8859-1:UTF-8') do |row|
     :subject_three => row['dc.subject.lcsh[en_US]'],
     :title_alternitive => row['dc.subject[en_US]'],
     :title_text => row['dc.title[en_US]'],
-    :recording_type => row['dc.type']
+    :recording_type => row['dc.type'],
+    :tracks => tracks
     )
 end

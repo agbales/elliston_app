@@ -1,6 +1,6 @@
 class RecordsController < ApplicationController
 
-  # def initialize(drc_id, collection, author, location, year, date, date_digitized, date_issued, description_html, description_notes, recording_format, length, drc_link, language, institution_repo, institution_digital, is_part_of, series, rights_uri, rights, subject, subject_two, subject_three, title_alternitive, title_text, recording_type)
+  # def initialize(drc_id, collection, author, location, year, date, date_digitized, date_issued, description_html, description_notes, recording_format, length, drc_link, language, institution_repo, institution_digital, is_part_of, series, rights_uri, rights, subject, subject_two, subject_three, title_alternitive, title_text, recording_type, tracks)
   #   @drc_id = drc_id
   #   @collection = collection
   #   @author = author
@@ -27,6 +27,7 @@ class RecordsController < ApplicationController
   #   @title_alternitive = title_alternitive
   #   @title_text = title_text
   #   @recording_type = recording_type
+  #   @tracks = tracks
   # end
 
   def new
@@ -53,6 +54,6 @@ class RecordsController < ApplicationController
   private
 
   def record_params
-    params.require(:record).permit(:drc_id, :collection, :author, :location, :year, :date, :date_digitized, :date_issued, :description_html, :description_notes, :recording_format, :length, :drc_link, :language, :institution_repo, :institution_digital, :is_part_of, :series, :rights_uri, :rights, :subject, :subject_two, :subject_three, :title_alternitive, :title_text, :recording_type)
+    params.require(:record).permit(:drc_id, :collection, :author, :location, :year, :date, :date_digitized, :date_issued, :description_html, :description_notes, :recording_format, :length, :drc_link, :language, :institution_repo, :institution_digital, :is_part_of, :series, :rights_uri, :rights, :subject, :subject_two, :subject_three, :title_alternitive, :title_text, :recording_type, :tracks)
   end
 end

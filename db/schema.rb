@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170312122151) do
+ActiveRecord::Schema.define(version: 20170327025847) do
 
   create_table "records", force: :cascade do |t|
     t.string   "drc_id"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20170312122151) do
     t.string   "recording_type"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.         "tracks"
   end
 
 end
