@@ -1,22 +1,27 @@
 require 'csv'
+require 'Nokogiri'
 
 csv = File.path(Rails.root.join('lib', 'seeds', 'updated-elliston-data.csv'))
 
 CSV.foreach(csv, headers: true, :encoding => 'ISO-8859-1:UTF-8') do |row|
 
-  #tracks test
-  tracks = [
-    {
-      track_number: 0,
-      track_title: "the first track",
-      track_url: "www.google.com"
-    },
-    {
-      track_number: 1,
-      track_title: "the second track",
-      track_url: "www.google.com"
+  # Create track listings
+  html = row['dc.description']
+  if html
+    html.gsub!('&nbsp;', ' ')
+  end
+
+  doc = Nokogiri::HTML(html)
+  urls = Hash[doc.xpath('//a[@href]').map {|link| [link.next_sibling.text.strip, link["href"]]}]
+  tracks = []
+  urls.each_with_index do |(key,value), index|
+    track = {
+      track_num: index,
+      title: key,
+      mp3: value
     }
-  ]
+    tracks << track
+  end
 
   Record.create(
     :drc_id => row['id'],

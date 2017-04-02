@@ -15,8 +15,10 @@
             <%= record.attributes.keys %>
             <p>tracks:</p>
             <% record.tracks.each do |track| %>
-              <%= track[:track_title] %>
+              <%= track %>
             <% end %>
+            <h3># of tracks</h3>
+            <%= record.tracks.length %>
         </td>
       </tr>
     <% end %>
