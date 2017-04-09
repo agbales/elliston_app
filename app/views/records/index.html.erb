@@ -13,14 +13,8 @@
             <%= record.series %>
             <br>
             <%= record.attributes.keys %>
-
-            <% record.tracks.each do |track| %>
-              <audio controls>
-                <source src="<%= track[:mp3] %>" >
-              </audio>
-            <% end %>
-
-            <h3># of tracks</h3>
+            <br>
+            <p># of tracks</p>
             <%= record.tracks.length %>
         </td>
       </tr>
