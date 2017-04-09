@@ -1,2 +1,10 @@
-<h1><%= @record.author %></h1>
-<p><%= raw @record.description_html %></p>
+<h2><%= @record.author %></h2>
+<h5><%= @record.drc_id %></h5>
+<h5><%= @record.date_issued %></h5>
+
+<% @record.tracks.each do |track| %>
+  <h6><%= track[:track_num] %> - <%= track[:title] %></h6>
+  <audio controls>
+    <source src="<%= track[:mp3] %>" >
+  </audio>
+<% end %>
