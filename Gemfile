@@ -32,6 +32,8 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+gem 'will_paginate', '~> 3.1.0'
+
 # CSS
 gem 'skeleton-rails', :git => 'https://github.com/helios-technologies/skeleton-rails'
 
