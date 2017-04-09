@@ -2,9 +2,24 @@
 <h5><%= @record.drc_id %></h5>
 <h5><%= @record.date_issued %></h5>
 
-<% @record.tracks.each do |track| %>
-  <h6><%= track[:track_num] %> - <%= track[:title] %></h6>
-  <audio controls>
-    <source src="<%= track[:mp3] %>" >
-  </audio>
+<% @record.tracks.each_with_index do |track, index| %>
+  <% if index == 0 %>
+    <audio id="audio" preload="auto" tabindex="0" controls="" >
+      <source src="<%= track[:mp3] %>">
+      Sorry, audio not supported.
+    </audio>
+    <ul id="playlist">
+        <li class="active">
+  <% end %>
+  <% unless index == 0 %>
+    <li>
+  <% end %>
+    <a href="<%= track[:mp3] %>">
+      <% unless index == 0 %>
+        <%= track[:track_num] %> -
+      <% end %>
+        <%= track[:title] %>
+    </a>
+  </li>
 <% end %>
+</ul>

@@ -1,0 +1,33 @@
+// Audio Player
+
+#playlist, #audio {
+  background: #333;
+  width: 400px;
+  padding: 20px;
+}
+
+#playlist {
+  margin: -4px 0px;
+}
+
+li {
+ a {
+   color: #f5f5f5;
+   padding: 8px;
+   display: block;
+   text-decoration: none;
+ }
+ a:hover {
+   color: #5DB0E6;
+   text-decoration: none;
+ }
+}
+
+ul {
+  list-style: none;
+}
+
+.active a {
+  color: #5DB0E6;
+  text-decoration: none;
+}
