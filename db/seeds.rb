@@ -24,13 +24,13 @@ CSV.foreach(csv, headers: true, :encoding => 'ISO-8859-1:UTF-8') do |row|
   end
 
   # Format Author Names
-  authors = row['dc.contributor.author'].gsub(/[0-9]|-|\|/, ' ').split(' ')
+  authors = row['dc.contributor.author'].to_s.gsub(/[0-9]|-|\|/, ' ').split(' ') || 'no author listed'
   formatted_author_names = []
   authors.each_with_index do |w, i|
     if w.include?(',')
       first_name = authors[i+1].to_s
       if first_name.include?('.')
-        if authors[i+2].include?('.')
+        if authors[i+2] && authors[i+2].include?('.')
           first_name += authors[i+2]
         end
       end
