@@ -23,10 +23,29 @@ CSV.foreach(csv, headers: true, :encoding => 'ISO-8859-1:UTF-8') do |row|
     tracks << track
   end
 
+  # Format Author Names
+  authors = row['dc.contributor.author'].gsub(/[0-9]|-|\|/, ' ').split(' ')
+  formatted_author_names = []
+  authors.each_with_index do |w, i|
+    if w.include?(',')
+      first_name = authors[i+1].to_s
+      if first_name.include?('.')
+        if authors[i+2].include?('.')
+          first_name += authors[i+2]
+        end
+      end
+      if authors[i+1]
+        last_name = w.gsub!(',', '')
+        formatted_author_names << first_name.to_s.gsub(',', '') + ' ' + last_name
+      end
+    end
+  end
+  formatted_author_names = formatted_author_names.join(' & ')
+
   Record.create(
     :drc_id => row['id'],
     :collection => row['collection'],
-    :author => row['dc.contributor.author'],
+    :author => formatted_author_names,
     :location => row['dc.coverage.spatial'],
     :year => row['dc.coverage.spatial[en_US]'],
     :date => row['dc.date.created'],
