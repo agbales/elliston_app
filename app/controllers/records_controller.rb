@@ -1,4 +1,9 @@
 class RecordsController < ApplicationController
+  helper_method :sort_column, :sort_direction
+
+  def index
+    @records = Record.order(sort_column + " " + sort_direction).paginate(:page => params[:page])
+  end
 
   def new
     @record = Record.new
@@ -13,10 +18,6 @@ class RecordsController < ApplicationController
     end
   end
 
-  def index
-    @records = Record.all.paginate(:page => params[:page])
-  end
-
   def show
     @record= Record.find(params[:id])
   end
@@ -25,5 +26,13 @@ class RecordsController < ApplicationController
 
   def record_params
     params.require(:record).permit(:drc_id, :collection, :author, :location, :year, :date, :date_digitized, :date_issued, :description_html, :description_notes, :recording_format, :length, :drc_link, :language, :institution_repo, :institution_digital, :is_part_of, :series, :rights_uri, :rights, :subject, :subject_two, :subject_three, :title_alternitive, :title_text, :recording_type, :tracks)
+  end
+
+  def sort_column
+    params[:sort] || "id"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 end
