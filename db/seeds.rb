@@ -1,5 +1,6 @@
 require 'csv'
 require 'Nokogiri'
+require 'Date'
 
 csv = File.path(Rails.root.join('lib', 'seeds', 'updated-elliston-data.csv'))
 
@@ -42,13 +43,35 @@ CSV.foreach(csv, headers: true, :encoding => 'ISO-8859-1:UTF-8') do |row|
   end
   formatted_author_names = formatted_author_names.join(' & ')
 
+  # format date
+  date = row['dc.date.created']
+
+  if date.include?('/')
+    slash_index = []
+    date.scan('/') do |c|
+      slash_index << [c, $~.offset(0)[0]]
+    end
+    first_instance = slash_index[0][1]
+    second_instance = slash_index[1][1]
+
+    month = date[0, first_instance]
+    month.length < 2 ? month = '0' + month : month
+
+    day = date[first_instance + 1..second_instance - 1]
+    day.length < 2 ? day = '0' + day : day
+
+    year = date[-2, 2]
+    year.to_i < 50 ? year = '20' + year : year = '19' + year
+    formatted_date = month + '-' + day + '-' + year
+  end
+
   Record.create(
     :drc_id => row['id'],
     :collection => row['collection'],
     :author => formatted_author_names,
     :location => row['dc.coverage.spatial'],
     :year => row['dc.coverage.spatial[en_US]'],
-    :date => row['dc.date.created'],
+    :date => formatted_date || date,
     :date_digitized => row['dc.date.digitized'],
     :date_issued => row['dc.date.issued'],
     :description_html => row['dc.description'],
