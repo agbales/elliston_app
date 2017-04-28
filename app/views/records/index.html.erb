@@ -5,14 +5,14 @@
     <tr>
       <th><%= sortable "drc_id", "Id" %></th>
       <th><%= sortable "author" %></th>
-      <th><%= sortable "date" %></th>
+      <th><%= sortable "year" %></th>
       <th>Info</th>
     </tr>
     <% @records.each_with_index do |record, index| %>
       <tr>
         <td><b><%= record.drc_id %></b></td>
         <td><%= link_to record.author.truncate(25, omission: '...'), record, :class => "button", :style => "width: 100%;" %></td>
-        <td><%= record.date %></td>
+        <td><%= record.year %></td>
         <td>
           <ul>
             <li>DRC-<%= record.drc_id %></li>
