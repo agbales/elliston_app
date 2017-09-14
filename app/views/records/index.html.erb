@@ -1,4 +1,9 @@
-<h2><%= link_to "Elliston", root_path %></h2>
+<div class="row navbar">
+  <h2><%= link_to "Elliston", root_path %></h2>
+  <button>Poetry</button>
+  <button>Fiction</button>
+  <button>Lectures</button>
+</div>
 
 <% if @records.present? %>
   <table>
