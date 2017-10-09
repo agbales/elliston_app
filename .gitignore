@@ -22,3 +22,6 @@
 
 # Ignore CSV
 *.csv
+
+# Other
+.DS_Store
