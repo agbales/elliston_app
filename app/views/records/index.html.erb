@@ -1,6 +1,6 @@
 <div class="row navbar">
   <h2><%= link_to "Elliston", root_path %></h2>
-  <button>Poetry</button>
+  <button><%= link_to "Poetry", :controller => "records", :query => "poetry" %></button>
   <button>Fiction</button>
   <button>Lectures</button>
 </div>

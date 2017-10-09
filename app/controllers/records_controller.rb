@@ -22,6 +22,10 @@ class RecordsController < ApplicationController
     @record= Record.find(params[:id])
   end
 
+  def query
+    @records = Record.where("is_part_of like ?", "%#{query}%")
+  end
+
   private
 
   def record_params
