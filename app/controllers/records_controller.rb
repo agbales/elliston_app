@@ -2,7 +2,11 @@ class RecordsController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    @records = Record.order(sort_column + " " + sort_direction).paginate(:page => params[:page])
+    if params[:query]
+      @records = Record.where("series LIKE ?", "%#{params[:query]}%").paginate(:page => params[:page])
+    else
+      @records = Record.order(sort_column + " " + sort_direction).paginate(:page => params[:page])
+    end
   end
 
   def new
@@ -20,10 +24,6 @@ class RecordsController < ApplicationController
 
   def show
     @record= Record.find(params[:id])
-  end
-
-  def query
-    @records = Record.where("is_part_of like ?", "%#{query}%")
   end
 
   private
