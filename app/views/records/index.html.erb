@@ -1,16 +1,19 @@
 <div class="row navbar">
-  <h2><%= link_to "Elliston", root_path %></h2>
-  <%= link_to "All", :controller => "records", :query => "" %>
-  <%= link_to "Poetry", :controller => "records", :query => "poetry" %>
-  <%= link_to "Fiction", :controller => "records", :query => "fiction" %>
-  <%= link_to "Lectures", :controller => "records", :query => "lecture" %>
+  <div class="one-half column">
+    <h2><%= link_to "Elliston", root_path %></h2>
+      <%= link_to "All", :controller => "records", :query => "" %>
+      <%= link_to "Poetry", :controller => "records", :query => "poetry" %>
+      <%= link_to "Fiction", :controller => "records", :query => "fiction" %>
+      <%= link_to "Lectures", :controller => "records", :query => "lecture" %>
+    </div>
+  <div class="one-half column">
+    <%= form_tag records_path, :method => "get" do %>
+      <h3>Search</h3>
+        <%= text_field_tag :query, params[:query] %>
+        <%= submit_tag "Search", :name => nil %>
+    <% end %>
+  </div>
 </div>
-
-<%= form_tag records_path, :method => "get" do %>
-  <h3>Search</h3>
-    <%= text_field_tag :query, params[:query] %>
-    <%= submit_tag "Search", :name => nil %>
-<% end %>
 
 <% if @records.present? %>
   <table>
