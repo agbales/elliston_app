@@ -3,7 +3,7 @@ class RecordsController < ApplicationController
 
   def index
     if params[:query]
-      @records = Record.where("series LIKE ?", "%#{params[:query]}%").paginate(:page => params[:page])
+      @records = Record.where("author LIKE ?", "%#{params[:query]}%").paginate(:page => params[:page])
     else
       @records = Record.order(sort_column + " " + sort_direction).paginate(:page => params[:page])
     end
