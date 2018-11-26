@@ -1,6 +1,6 @@
 <h2><%= @record.author %></h2>
-<h5><%= @record.drc_id %></h5>
-<h5><%= @record.date_issued %></h5>
+<h5>DRCID: <%= @record.drc_id %></h5>
+<h5>Date: <%= @record.date_issued %></h5>
 
 <% @record.tracks.each_with_index do |track, index| %>
   <% if index == 0 %>
